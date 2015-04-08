@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.github.nordinh'
+version = '0.0.1-SNAPSHOT'
+
+description = """Dropwizard bundle for integrating MongoDB"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+project.ext {
+    dropwizardVersion = '0.8.0'
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:../maven-repo")
+        }
+    }
+}
+
+dependencies {
+    compile group: 'io.dropwizard', name: 'dropwizard-core', version:dropwizardVersion
+    compile group: 'com.commercehub.dropwizard', name: 'dropwizard-mongo', version:'2.0.0'
+    compile group: 'org.mongojack', name: 'mongojack', version:'2.1.0'
+}
